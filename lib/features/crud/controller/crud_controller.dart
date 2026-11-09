@@ -37,7 +37,7 @@ class CrudController extends GetxController {
   Future<void> saveNote() async {
     if (isSaving.value) return;
 
-    if (titleController.text.trim().isEmpty &&
+    if (titleController.text.trim().isEmpty ||
         contentController.text.trim().isEmpty) {
       Get.snackbar(
         'Empty Note',

@@ -59,30 +59,41 @@ Widget buildNoteCard(
                       controller.togglePin(note);
                       break;
                     case 'delete':
-                      Get.dialog(
-                        AlertDialog(
-                          title: const Text('Delete Note?'),
-                          content: const Text(
-                            'Are you sure you want to delete this note? This action cannot be undone.',
-                          ),
-                          actions: [
-                            TextButton(
-                              onPressed: () => Get.back(),
-                              child: const Text('Cancel'),
-                            ),
-                            TextButton(
-                              onPressed: () {
-                                Get.back();
-                                controller.deleteNote(note.id);
-                              },
-                              child: const Text(
-                                'Delete',
-                                style: TextStyle(color: Colors.red),
+                      Future.delayed(const Duration(milliseconds: 150), () {
+                        if (!context.mounted) return;
+
+                        showDialog(
+                          context: context,
+                          barrierDismissible: false,
+                          builder: (dialogContext) {
+                            return AlertDialog(
+                              title: const Text('Delete Note?'),
+                              content: const Text(
+                                'Are you sure you want to delete this note? '
+                                    'This action cannot be undone.',
                               ),
-                            ),
-                          ],
-                        ),
-                      );
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(dialogContext);
+                                  },
+                                  child: const Text('Cancel'),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(dialogContext);
+                                    controller.deleteNote(note.id);
+                                  },
+                                  child: const Text(
+                                    'Delete',
+                                    style: TextStyle(color: Colors.red),
+                                  ),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      });
                       break;
                   }
                 },
@@ -116,7 +127,7 @@ Widget buildNoteCard(
 
           Text(
             formatDate(note.updatedAt),
-            style: const TextStyle(fontSize: 11, color: Colors.black54),
+            style: const TextStyle(fontSize: 11, ),
           ),
         ],
       ),

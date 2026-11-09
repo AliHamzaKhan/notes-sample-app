@@ -21,7 +21,6 @@ class CrudView extends GetView<CrudController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // HEADER
               Text(
                 isEditing ? 'Update your note' : 'Create a new note',
                 style: const TextStyle(
@@ -41,7 +40,6 @@ class CrudView extends GetView<CrudController> {
 
               const SizedBox(height: 28),
 
-              // TITLE
               const Text(
                 'Title',
                 style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
@@ -66,7 +64,6 @@ class CrudView extends GetView<CrudController> {
 
               const SizedBox(height: 22),
 
-              // CONTENT
               const Text(
                 'Content',
                 style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
@@ -94,7 +91,6 @@ class CrudView extends GetView<CrudController> {
 
               const SizedBox(height: 28),
 
-              // SAVE BUTTON
               Obx(
                 () => SizedBox(
                   width: double.infinity,
@@ -137,7 +133,6 @@ class CrudView extends GetView<CrudController> {
 
               const SizedBox(height: 12),
 
-              // CANCEL BUTTON
               SizedBox(
                 width: double.infinity,
                 height: 48,
